@@ -23,7 +23,11 @@ public class Should {
 	}
 
 	public void haveText(String regex) {
-		Assertion.test(expect, selenWebElement.getText().matches(regex), "Test for Text matching");
+		String txt = selenWebElement.getText();
+		boolean res = Assertion.test(expect, txt.matches(regex), "Test for Text matching");
+		if(!res){
+			Assertion.printDetails(expect, regex, txt);
+		}
 
 	}
 
