@@ -38,7 +38,7 @@ public class Assertion {
 		return true;
 	}
 
-	private static void printDetails(boolean expected, Object val1, Object val2) {
+	static void printDetails(boolean expected, Object val1, Object val2) {
 		if (expected) {
 			System.err.println("Expected Value : " + val1);
 		} else {
@@ -46,6 +46,7 @@ public class Assertion {
 		}
 		System.err.println("Actual Value   : " + val2);
 		sleep(100);
+		throw new RuntimeException("Assertion Failed");
 	}
 
 	public static boolean test(boolean expected, boolean condition, String customMessage) {
