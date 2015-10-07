@@ -5,16 +5,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class Driver {
+public class Driver extends SeleniumDriver {
 
-	private static SelenDriver driver = null;
-
-	
-	public static SelenDriver get(String url, SupportedBrowsers BrowserName, boolean newSession, String driverpath) {
-		return get(url, BrowserName, newSession, driverpath, "localhost");
+	public Driver(SupportedBrowsers browsers, boolean NewSession, String driverPath) {
+		super(browsers, getDefaultCapabilities(browsers,driverPath), NewSession, driverPath, "localhost");
 	}
 
-	private static SelenDriver get(String url, SupportedBrowsers BrowserName, boolean newSession, String driverpath, String hostname) {
+	private static DesiredCapabilities getDefaultCapabilities(SupportedBrowsers BrowserName, String driverpath) {
 		DesiredCapabilities capabilities = null;
 
 		switch (BrowserName) {
@@ -47,14 +44,7 @@ public class Driver {
 
 		capabilities.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, true);
 		capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
-		driver = new SelenDriver(BrowserName, capabilities, newSession, driverpath, hostname);
-		driver.manage().window().maximize();
-		if (driver.isNewSession()) {
-			driver.get(url);
-		}
-		
-		return driver;
-
+		return capabilities;
 	}
 
 }
