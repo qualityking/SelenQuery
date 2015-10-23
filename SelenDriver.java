@@ -2,13 +2,6 @@ package com.selenquery.core;
 
 import java.util.HashMap;
 import java.util.List;
-
-
-
-
-
-
-
 import org.apache.commons.collections.map.HashedMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -69,7 +62,7 @@ public interface SelenDriver extends WebDriver {
 	public SelenWebElement any(int TimeoutInSec, Object...queryString);
 	public SelenWebElement any(HashMap<String, Object> mapNameAndQueryString,int TimeoutInSec);
 	public SelenWebElement any(List<Object> listQueryString,int TimeoutInSec);
-	
+	public SelenRadioGroup radio(String name);
 	
 	
 }
