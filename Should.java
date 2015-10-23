@@ -115,5 +115,8 @@ public class Should {
 			Assertion.test(expect, false, "Test for elment foucsed");
 		}
 	}
-
+	public void selected(){
+		boolean selected = selenWebElement.isSelected();
+		Assertion.test(expect, selected, "Selected > Having Value : " + selenWebElement.getAttribute("value"));
+	}
 }
