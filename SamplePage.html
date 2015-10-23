@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<style>
+		td { padding:5px;}
+		.amt{border: 1px solid #000; background:lightyellow;}
+		input[type="text"] {width:200px;}
+		textarea {width:200px;}
+		Select {width:200px;}
+		body, table, select {font-family:Tahoma;font-size:1em;}
+		</style>
+		<script src="jquery-2.1.4.min.js"></script>
+	</head>
+	<body>
+	<div style="border:1px solid gray; margin:10px;">
+	<div style="border-bottom:1px solid gray; padding:5px;background:linear-gradient(#b5bdc8 0%,#828c95 36%);color:#fff;"> Simple Form Fields</div>
+	
+	<div style="margin:10px; padding:10px;">
+	<table border="1" style="border-collapse: collapse;"> 
+	<thead style="background:lightblue;">
+	<tr>
+	<th>Detail</th>
+	<th>Field Name</th>
+	<th>Control</th>
+	</tr>
+	</thead>
+	
+	<tr> <td>	Simple Input</td > <td>	First Name</td >  <td> <input type="text" id="fname"   placeholder="Enter your Name"/> </td> </tr> 
+	<tr> <td>	ReadOnly Input</td > <td>Total Amount ($) </td > <td> <input type="text" class="amt" value="25.00" readonly /> </td> </tr> 
+	<tr> <td>	Disabled Input</td >  <td>User Id</td > <td> <input type="text" id="uid" value="UID-1001" disabled /> </td> </tr> 
+	<tr> <td>	Text Area with no id</td >  <td>Address</td > <td> <textarea></textarea> </td> </tr> 
+	<tr> <td>	Radio Select & verify</td >  <td>Gender</td > <td> <input type="radio" name="r1" value="male"/> Male <input type="radio" name="r1" value="female"/> Female </td> </tr> 
+	<tr> <td>	Checkbox Check & verify</td >  <td> interest</td > <td> <input type="checkbox" name="interest" value="java"/> Java <input type="checkbox" name="interest" value="C#"/> C# </td> </tr> 
+
+	<tr> <td>	Combo </td >  <td> Country</td><td> 
+	<Select> 
+	<option value="ind">India</option>
+	<option value="us">America</option>
+	<option value="uk">United Kingdom</option>
+	</select>
+	</td> </tr> 
+	
+	<tr> <td>	Multi Select List </td >  <td> Fruites</td><td> 
+	<Select multiple> 
+	<option value="mango">Mango</option>
+	<option value="banana">Banana</option>
+	<option value="apple">Apple</option>
+	<option value="orange">orange</option>
+	</select>
+	</td> </tr> 
+
+	<tr> <td>	Button</td >  <td>  Submit </td > <td> <input type="Submit"  value="Submit" onclick="$('#id1').text('clicked!')"/> <span id="id1"></span></td> </tr> 
+	<tr> <td>	Button</td >  <td>  Button Tag </td > <td> <button  onclick="$('#id2').text('clicked!')">I am a button</button> <span id="id2"></span></td> </tr> 
+	<tr> <td>	Button</td >  <td>  Input button </td > <td> <input type="button"  value="Click Me"  onclick="$('#id3').text('clicked!')"/><span id="id3"></span> </td> </tr> 
+		
+	</table>
+	</div>
+	</div>
+	</body>
+<html>
+
