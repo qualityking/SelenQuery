@@ -6,16 +6,16 @@ public class Should {
 
 	private int timeout = 0;
 	private boolean expect = true;
-	private SelenWebElement selenWebElement = null;
+	private SelenElement selenWebElement = null;
 	private SelenDriver driver = null;
 
-	public Should(SelenDriver driver, SelenWebElement selenWebElement, boolean expect) {
+	public Should(SelenDriver driver, SelenElement selenWebElement, boolean expect) {
 		this.driver = driver;
 		this.selenWebElement = selenWebElement;
 		this.expect = expect;
 	}
 
-	public Should(SelenDriver driver, SelenWebElement selenWebElement, boolean expect, int timeoutInSec) {
+	public Should(SelenDriver driver, SelenElement selenWebElement, boolean expect, int timeoutInSec) {
 		this.driver = driver;
 		this.selenWebElement = selenWebElement;
 		this.expect = expect;
@@ -23,9 +23,18 @@ public class Should {
 	}
 
 	public void haveText(String regex) {
+		haveText(regex, true);
+	}
+
+	public void haveText(String regex, boolean caseSensitive) {
 		String txt = selenWebElement.getText();
+		if (!caseSensitive) {
+			regex = regex.toLowerCase();
+			txt = txt.toLowerCase();
+		}
+
 		boolean res = Assertion.test(expect, txt.matches(regex), "Test for Text matching");
-		if(!res){
+		if (!res) {
 			Assertion.printDetails(expect, regex, txt);
 		}
 
@@ -34,7 +43,7 @@ public class Should {
 	public void haveClass(String className) {
 		String actualClassName = selenWebElement.getAttribute("class");
 		Assertion.test(expect, actualClassName, className, "Test for Class Name matching");
-		
+
 	}
 
 	public void haveAttr(String attrName) {
@@ -47,42 +56,64 @@ public class Should {
 
 	}
 
+	public void haveValue(String value) {
+		haveAttrVal("value", value, true);
+	}
+
+	public void haveValue(String value, boolean caseSensitive) {
+		haveAttrVal("value", value, caseSensitive);
+	}
+
 	public void haveAttrVal(String attrName, String attrValue) {
+		haveAttrVal(attrName, attrValue, true);
+	}
+
+	public void haveAttrVal(String attrName, String attrValue, boolean caseSensitive) {
 		String attibValue = selenWebElement.getAttribute(attrName);
-		Assertion.test(expect, attrValue, attibValue, "Test for Attribute value matching");
+		if (!caseSensitive) {
+			Assertion.test(expect, attrValue.toLowerCase(), attibValue.toLowerCase(), "Have Attribute value");
+		} else {
+			Assertion.test(expect, attrValue, attibValue, "Have Attribute value");
+		}
 
 	}
 
 	public void haveStyle(String styleProperty, String styleValue) {
 		String val = selenWebElement.getCssValue(styleProperty);
-		Assertion.test(expect, styleValue, val, "Test for css Style property matching");
+		Assertion.test(expect, styleValue.toLowerCase(), val.toLowerCase(), "Test for css Style property matching");
 	}
 
 	public void displayed() {
-		Assertion.test(expect,selenWebElement.isDisplayed(), "Test for elment displying"); 
+		Assertion.test(expect, selenWebElement.isDisplayed(), "Test for elment displying");
 	}
 
-	public void enabled() {
-		try {
-			selenWebElement.getAttribute("readonly");
-			Assertion.test(expect, true, "Readonly Test");
-		} catch (Exception e) {
-			Assertion.test(expect, false, "Readonly Test");
+	public void readonly() {
+		String x = selenWebElement.getAttribute("readonly");
+		if (x == null) {
+			Assertion.test(expect, false, "readonly");
+		} else if (x.equals("true")) {
+			Assertion.test(expect, true, "readonly");
 		}
+
 	}
-	
-	
+
+	public void disabled() {
+		String x = selenWebElement.getAttribute("disabled");
+		if (x == null) {
+			Assertion.test(expect, false, "disabled");
+		} else if (x.equals("true")) {
+			Assertion.test(expect, true, "disabled");
+		}
+
+	}
+
 	public void focused() {
 		WebElement elm = (WebElement) driver.executeScript("return document.activeElement");
-	    if(elm != null && elm.equals(selenWebElement.getWebElement()))
-	    {
-	    	Assertion.test(expect,true, "Test for elment foucsed"); 
-	    }
-	    else{
-	    	Assertion.test(expect,false, "Test for elment foucsed");
-	    }
+		if (elm != null && elm.equals(selenWebElement.getWebElement())) {
+			Assertion.test(expect, true, "Test for elment foucsed");
+		} else {
+			Assertion.test(expect, false, "Test for elment foucsed");
+		}
 	}
-	
 
-	
 }
