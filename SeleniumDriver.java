@@ -396,6 +396,13 @@ class SeleniumDriver extends ReusableRemoteWebDriver implements WebDriver, Selen
 
 
 
+	@Override
+	public SelenRadioGroup radio(String name) {
+		SelenRadioGroup group = new SelenRadioGroup();
+		group.addAll($$(By.name(name)));
+		return group;
+
+	}
 
 
 }
