@@ -51,7 +51,11 @@ public class Assertion {
 
 	public static boolean test(boolean expected, boolean condition, String customMessage) {
 		if (condition == expected) {
-			Log.info("Assertion Passed > " + customMessage);
+			if(expected){
+				Log.info("Assertion Passed > Should > " + customMessage);
+			}else {
+				Log.info("Assertion Passed > ShouldNot > " + customMessage);	
+			}
 			return true;
 		} else {
 			if (customMessage == "") {
