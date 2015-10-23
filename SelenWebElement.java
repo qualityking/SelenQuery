@@ -183,7 +183,9 @@ public class SelenWebElement implements WebElement {
 	}
 
 
-
+	public String getValue(){
+		return element.getAttribute("value");
+	}
 	
 	
 	
