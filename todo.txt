@@ -1,0 +1,29 @@
+		driver.$("#fname").siblings()
+		driver.$("#fname").siblings(String selector)
+		
+		driver.$("#fname").nextSibling()  
+		driver.$("#fname").nextSibling(String selector) 
+		driver.$("#fname").previousSibling()  
+		driver.$("#fname").previousSibling(String selector) 
+		
+		driver.$("#fname").parent()   
+		driver.$("#fname").parent(String selector) 
+		
+		driver.$("#fname").child()  
+		driver.$("#fname").child(String selector) 
+		
+		driver.$("#fname").lastchild() 
+		driver.$("#fname").lastchild(String Selector) 
+		
+		driver.$("#fname").children() 
+		driver.$("#fname").children(String selector)
+		
+		driver.$("#fname").childrenAll() 
+		driver.$("#fname").childrenAll(String selector)
+		
+		driver.$("#fname").nthChild(int position)  
+		driver.$("#fname").nthChild(int position, String selector)
+		driver.$("#fname").nthParent(int position, String selector)   
+		
+		driver.$("#fname").lastParent() 
+		driver.$("#fname").lastParent(String Selector); 
